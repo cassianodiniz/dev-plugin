@@ -1,0 +1,22 @@
+{
+  "name": "dev",
+  "version": "1.0.3",
+  "description": "Pensar, fazer e passar o bastão: três skills chamáveis individualmente. planejar (metodologia completa pra desenhar produto/software novo do zero antes de codar), auto-prompt (modo largar-e-esquecer em que o Claude executa a tarefa e o Codex confronta o trabalho antes de fechar, com protocolo de segurança e verificação embutido) e handoff (gera documento de passagem de bastão pra continuar o trabalho numa sessão nova do zero). A planejar pode, no fim, oferecer disparar a auto-prompt pra executar o plano — opcional, nunca automático. Repo-agnóstico — serve pra qualquer projeto.",
+  "author": {
+    "name": "Cassiano Diniz",
+    "email": "cassi.diniz@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Thales Laray"
+    }
+  ],
+  "license": "UNLICENSED",
+  "keywords": [
+    "planejamento",
+    "autonomia",
+    "handoff",
+    "codex",
+    "seguranca"
+  ]
+}

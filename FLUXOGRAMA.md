@@ -7,7 +7,7 @@ por qualquer uma:
 - **🔬 /auto-think** — **estuda um problema difícil a fundo** (vários ângulos em paralelo, confronta os achados com o Codex) e entrega **soluções com veredito**. Não executa — para na recomendação.
 - **⚙️ /auto-prompt** — executa uma tarefa do início ao fim, se corrigindo sozinho, e **verifica a casa** construída.
 - **🪢 /handoff** — salva o ponto exato do trabalho e passa o bastão pra outra sessão.
-- **🛡️ /gpt-blindagem** — **segunda opinião adversarial no meio de qualquer conversa**: sem precisar de plano nem código formal, ele monta o alvo sozinho, o Codex tenta derrubar, e devolve veredito **Seguir / Ajustar / Bloquear**.
+- **🛡️ /gpt-refletir** — **segunda opinião adversarial pra refletir antes de cravar**, no meio de qualquer conversa: sem precisar de plano nem código formal, ele monta o alvo sozinho, o Codex tenta derrubar, e devolve veredito **Seguir / Ajustar / Bloquear**. Se der **Seguir**, oferece executar com a `/auto-prompt`.
 
 Elas também formam **um ciclo**: o plano sai do `planejar` (ou a solução escolhida sai do
 `auto-think`) e vai pro `auto-prompt` pra ser executado; se o trabalho fica longo e o contexto
@@ -21,8 +21,8 @@ enche, o `auto-prompt` chama o `handoff`, e numa sessão nova você retoma de on
 > **`auto-think` parte de um PROBLEMA difícil** (investiga e recomenda). Os dois entregam pro
 > `auto-prompt` executar.
 >
-> O **`gpt-blindagem`** fica de fora do ciclo: é o **confronto avulso**, que você chama a
-> qualquer momento pra blindar uma decisão na hora — o mesmo motor de confronto Codex que o
+> O **`gpt-refletir`** fica de fora do ciclo: é o **confronto avulso**, que você chama a
+> qualquer momento pra refletir sobre uma decisão na hora — o mesmo motor de confronto Codex que o
 > `planejar` e o `auto-think` usam por dentro, só que sob demanda e sem alvo pronto.
 
 ```mermaid
@@ -34,14 +34,14 @@ enche, o `auto-prompt` chama o `handoff`, e numa sessão nova você retoma de on
 }}}%%
 flowchart TD
     START(["💡 Você chega com algo pra fazer"])
-    PORTAS{"Por onde começar?<br/>as 5 portas são independentes"}
+    PORTAS{"VOCÊ escolhe por onde começar<br/>as 5 portas são independentes · não há maestro"}
     START --> PORTAS
 
     E1(["ideia / produto novo"])
     E2(["problema difícil pra estudar"])
     E3(["tarefa pronta pra largar"])
     E4(["recomeçar sessão · reduzir contexto"])
-    E5(["decisão pra blindar agora"])
+    E5(["decisão pra refletir agora"])
     PORTAS --> E1 --> PINTRO
     PORTAS --> E2 --> TINTRO
     PORTAS --> E3 --> AINTRO
@@ -125,7 +125,7 @@ flowchart TD
     %% ───────── GPT-BLINDAGEM ─────────
     subgraph GPTBLIND[" "]
         direction TB
-        GINTRO["<b>🛡️ /gpt-blindagem</b> — segunda opinião adversarial no meio da conversa<br/>monta o alvo sozinho · mesmo confronto Codex de planejar/auto-think, mas sob demanda"]
+        GINTRO["<b>🛡️ /gpt-refletir</b> — segunda opinião adversarial pra refletir antes de cravar<br/>monta o alvo sozinho · mesmo confronto Codex de planejar/auto-think, mas sob demanda"]
         G1["<b>Monta o ALVO na hora</b><br/><i>a decisão + plano + código que mexemos — sem precisar de PR</i>"]
         G2["<b>Codex GPT tenta DERRUBAR</b> — rodada 1<br/><i>advogado do diabo: caça o furo</i>"]
         G3["<b>Você filtra com prova</b><br/><i>descarta o que não procede; o GPT é insumo, não ordem</i>"]
@@ -138,6 +138,7 @@ flowchart TD
     GFIM(["🛡️ Veredito: Seguir · Ajustar · Bloquear"])
     GDEC -->|"aceitei tudo / sem furo"| GFIM
     G4 --> GFIM
+    GFIM -. "deu SEGUIR → quer executar agora?<br/>só com seu OK" .-> AINTRO
 
     %% ───────── cores (uma família por skill) ─────────
     %% planejar=índigo · auto-think=teal · auto-prompt=verde · handoff=âmbar · estrutura=cinza

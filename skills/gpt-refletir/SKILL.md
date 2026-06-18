@@ -1,9 +1,9 @@
 ---
-name: gpt-blindagem
-description: Revisor adversarial on-demand via Codex GPT-5.5 que BLINDA sua decisão antes de você se comprometer — roda no MEIO de qualquer conversa, sem precisar de plano, PR ou código formal. O Claude monta sozinho o alvo (a decisão/raciocínio em jogo + o plano + o código que a gente mexeu), manda o GPT tentar DERRUBAR (advogado do diabo) e devolve um veredito Seguir/Ajustar/Bloquear com os furos que procedem — pra te proteger de decidir errado, não pra atrapalhar. Acionar quando o usuário disser "/gpt-blindagem", "blinda essa ideia", "blinda isso", "/gpt", "chama o gpt", "manda pro gpt", "pergunta pro gpt", "o que o gpt acha", "segunda opinião do gpt", "pede pro gpt revisar", "revisa ao contrário", "advogado do diabo", "contraponto", "acha o furo disso" — mesmo sem citar "revisão" explicitamente. NÃO é pra revisar mensagem de WhatsApp (isso é o revisor do zap-diretor) nem código do Praxios dentro do fluxo (isso é o claudex); é o revisor genérico pra tudo o mais.
+name: gpt-refletir
+description: Revisor adversarial on-demand via Codex GPT-5.5 que te faz REFLETIR sobre uma decisão antes de você se comprometer — roda no MEIO de qualquer conversa, sem precisar de plano, PR ou código formal. O Claude monta sozinho o alvo (a decisão/raciocínio em jogo + o plano + o código que a gente mexeu), manda o GPT tentar DERRUBAR (advogado do diabo) e devolve um veredito Seguir/Ajustar/Bloquear com os furos que procedem — pra te proteger de decidir errado, não pra atrapalhar. Quando o veredito é "Seguir", oferece executar a decisão com a /Titan:auto-prompt. Acionar quando o usuário disser "/gpt-refletir", "reflete sobre isso", "reflete essa decisão", "reflete isso", "/gpt", "chama o gpt", "manda pro gpt", "pergunta pro gpt", "o que o gpt acha", "segunda opinião do gpt", "pede pro gpt revisar", "revisa ao contrário", "advogado do diabo", "contraponto", "acha o furo disso" — mesmo sem citar "revisão" explicitamente. NÃO é pra revisar mensagem de WhatsApp nem código dentro de um fluxo de desenvolvimento dedicado a um projeto — é o revisor genérico pra tudo o mais.
 ---
 
-# Skill gpt-blindagem — segunda opinião adversarial do GPT, no meio da conversa
+# Skill gpt-refletir — segunda opinião adversarial do GPT pra você refletir, no meio da conversa
 
 Você (Claude) acabou de fazer ou propor alguma coisa — um raciocínio, um plano, um trecho de código — e o usuário quer que **o GPT-5.5 (via Codex) tente derrubar** antes de seguir. O GPT entra como **advogado do diabo**: não elogia, caça o furo.
 
@@ -20,8 +20,8 @@ Rodada 1: você monta o alvo, o GPT tenta derrubar, você filtra com prova. Aí 
 ## Caminhos (resolve na sua máquina antes de rodar)
 
 Os comandos usam `$TMP` e `$GPT`. `$GPT` é **a pasta desta própria skill** (a pasta onde está este `SKILL.md`, que contém `scripts/run-gpt.sh`). Resolva o caminho absoluto dela na sua instalação e exporte os dois (uma vez):
-- **Mac/Linux:** `export TMP=/tmp GPT=<pasta-desta-skill>` — ex.: `~/.claude/skills/Titan/skills/gpt-blindagem`
-- **Windows:** `export TMP=C:/temp GPT=<pasta-desta-skill>` — ex.: `D:/skills/Titan/skills/gpt-blindagem`
+- **Mac/Linux:** `export TMP=/tmp GPT=<pasta-desta-skill>` — ex.: `~/.claude/skills/Titan/skills/gpt-refletir`
+- **Windows:** `export TMP=C:/temp GPT=<pasta-desta-skill>` — ex.: `D:/skills/Titan/skills/gpt-refletir`
 
 > Pré-requisito: esta skill chama o **Codex CLI** (GPT-5.5). Sem o `codex` instalado, ela não roda o confronto externo — o Claude assume o papel do revisor sozinho e avisa que rodou sem o GPT.
 
@@ -195,6 +195,8 @@ Apresente curto, no tom do usuário (linguagem de diretor, sem jargão):
 - Os pontos que **procedem**, traduzidos — o que é + o que fazer.
 - Se descartou algo do GPT, diga em uma linha por quê (não esconda que filtrou) — e, se rodou a 2, se o GPT bateu o martelo no seu descarte ou não.
 - Se for grave: a pergunta A/B no fim.
+
+**Se o veredito final for SEGUIR** (a decisão passou no confronto): ofereça **levar pra execução** — pergunte se ele quer que a `/Titan:auto-prompt` execute a decisão agora. É opcional e só com o OK dele; se aceitar, passe o alvo já refletido como objetivo pra `auto-prompt`. Se for **AJUSTAR/BLOQUEAR**, não ofereça executar — primeiro resolve o que o confronto apontou.
 
 ## Fallback
 

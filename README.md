@@ -4,6 +4,24 @@ Cinco skills de desenvolvimento, chamáveis individualmente — repo-agnóstico,
 
 **Autoria:** Cassiano Diniz · **Co-autoria:** Thales Laray
 
+## ⚡ Instalar (copia e cola)
+
+**Tudo de uma vez** — plugin + todas as dependências, num comando no terminal (Mac/Linux; Windows via Git Bash):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/cassianodiniz/Titan/main/install.sh | bash
+```
+
+**Só o plugin** — cola no Claude Code, uma linha por vez:
+
+```
+/plugin marketplace add cassianodiniz/cassiano.diniz
+/plugin install Titan@cassiano.diniz
+```
+
+Depois **reinicie o Claude Code**. O que sobra manual (login do Codex, chaves de API) e a lista
+de cada dependência estão no **[INSTALL.md](INSTALL.md)**.
+
 ## As 5 skills
 
 | Comando | O que faz |
@@ -43,19 +61,9 @@ Git Bash**. Não rodam em PowerShell/cmd nativo.
 
 ## Instalar
 
-Pelo `/plugin`, adicione o marketplace e instale **Titan** (uma vez por máquina):
-
-```
-/plugin marketplace add cassianodiniz/cassiano.diniz
-/plugin install Titan@cassiano.diniz
-```
-
-Depois as skills ficam disponíveis como `Titan:planejar`, `Titan:auto-think`, `Titan:auto-prompt`,
-`Titan:gpt-refletir` e `Titan:handoff`.
-
-Pra instalar o plugin **e todas as ferramentas que ele usa por fora** (pra você ou pra outra
-pessoa), siga o **[INSTALL.md](INSTALL.md)** — tem os comandos exatos de cada dependência, e um
-`install.sh` que automatiza a parte que dá.
+Os comandos estão no topo (**⚡ Instalar**). Depois de instalar, as skills ficam disponíveis como
+`Titan:planejar`, `Titan:auto-think`, `Titan:auto-prompt`, `Titan:gpt-refletir` e `Titan:handoff`.
+A lista completa de dependências e o que sobra manual estão no **[INSTALL.md](INSTALL.md)**.
 
 ---
 

@@ -1,12 +1,13 @@
 # Fluxograma — plugin `Titan`
 
-Plugin com **quatro skills**. Cada uma é uma **porta de entrada independente** — você pode começar
+Plugin com **cinco skills**. Cada uma é uma **porta de entrada independente** — você pode começar
 por qualquer uma:
 
 - **🧠 /planejar** — desenha um produto/software do zero, **descobre como o problema já foi resolvido lá fora** e **audita a planta** antes de construir.
 - **🔬 /auto-think** — **estuda um problema difícil a fundo** (vários ângulos em paralelo, confronta os achados com o Codex) e entrega **soluções com veredito**. Não executa — para na recomendação.
 - **⚙️ /auto-prompt** — executa uma tarefa do início ao fim, se corrigindo sozinho, e **verifica a casa** construída.
 - **🪢 /handoff** — salva o ponto exato do trabalho e passa o bastão pra outra sessão.
+- **🛡️ /gpt-blindagem** — **segunda opinião adversarial no meio de qualquer conversa**: sem precisar de plano nem código formal, ele monta o alvo sozinho, o Codex tenta derrubar, e devolve veredito **Seguir / Ajustar / Bloquear**.
 
 Elas também formam **um ciclo**: o plano sai do `planejar` (ou a solução escolhida sai do
 `auto-think`) e vai pro `auto-prompt` pra ser executado; se o trabalho fica longo e o contexto
@@ -19,6 +20,10 @@ enche, o `auto-prompt` chama o `handoff`, e numa sessão nova você retoma de on
 > E entre os dois "pensadores": **`planejar` parte de uma IDEIA de produto** (desenha algo novo);
 > **`auto-think` parte de um PROBLEMA difícil** (investiga e recomenda). Os dois entregam pro
 > `auto-prompt` executar.
+>
+> O **`gpt-blindagem`** fica de fora do ciclo: é o **confronto avulso**, que você chama a
+> qualquer momento pra blindar uma decisão na hora — o mesmo motor de confronto Codex que o
+> `planejar` e o `auto-think` usam por dentro, só que sob demanda e sem alvo pronto.
 
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {
@@ -29,17 +34,19 @@ enche, o `auto-prompt` chama o `handoff`, e numa sessão nova você retoma de on
 }}}%%
 flowchart TD
     START(["💡 Você chega com algo pra fazer"])
-    PORTAS{"Por onde começar?<br/>as 4 portas são independentes"}
+    PORTAS{"Por onde começar?<br/>as 5 portas são independentes"}
     START --> PORTAS
 
     E1(["ideia / produto novo"])
     E2(["problema difícil pra estudar"])
     E3(["tarefa pronta pra largar"])
     E4(["recomeçar sessão · reduzir contexto"])
+    E5(["decisão pra blindar agora"])
     PORTAS --> E1 --> PINTRO
     PORTAS --> E2 --> TINTRO
     PORTAS --> E3 --> AINTRO
     PORTAS --> E4 --> HINTRO
+    PORTAS --> E5 --> GINTRO
 
     %% ───────── PLANEJAR ─────────
     subgraph PLANEJAR[" "]
@@ -115,19 +122,39 @@ flowchart TD
     H2 --> NOVA(["🔄 Sessão nova lê o arquivo e retoma o trabalho"])
     NOVA -. "volta ao ponto exato (aqui: a execução)" .-> AINTRO
 
+    %% ───────── GPT-BLINDAGEM ─────────
+    subgraph GPTBLIND[" "]
+        direction TB
+        GINTRO["<b>🛡️ /gpt-blindagem</b> — segunda opinião adversarial no meio da conversa<br/>monta o alvo sozinho · mesmo confronto Codex de planejar/auto-think, mas sob demanda"]
+        G1["<b>Monta o ALVO na hora</b><br/><i>a decisão + plano + código que mexemos — sem precisar de PR</i>"]
+        G2["<b>Codex GPT tenta DERRUBAR</b> — rodada 1<br/><i>advogado do diabo: caça o furo</i>"]
+        G3["<b>Você filtra com prova</b><br/><i>descarta o que não procede; o GPT é insumo, não ordem</i>"]
+        GDEC{"Contestou algum furo?<br/>teto duro: 2 rodadas"}
+        G4["<b>Codex audita o SEU filtro</b> — rodada 2<br/><i>descartou direito? a versão ajustada ainda fura?</i>"]
+        GINTRO --> G1 --> G2 --> G3 --> GDEC
+        GDEC -->|"sim, contestei um furo"| G4
+    end
+
+    GFIM(["🛡️ Veredito: Seguir · Ajustar · Bloquear"])
+    GDEC -->|"aceitei tudo / sem furo"| GFIM
+    G4 --> GFIM
+
     %% ───────── cores (uma família por skill) ─────────
     %% planejar=índigo · auto-think=teal · auto-prompt=verde · handoff=âmbar · estrutura=cinza
     classDef cabP fill:#4338ca,color:#ffffff,stroke:#a5b4fc,stroke-width:1.5px;
     classDef cabT fill:#0f766e,color:#ffffff,stroke:#5eead4,stroke-width:1.5px;
     classDef cabA fill:#15803d,color:#ffffff,stroke:#86efac,stroke-width:1.5px;
     classDef cabH fill:#c2410c,color:#ffffff,stroke:#fdba74,stroke-width:1.5px;
+    classDef cabG fill:#be123c,color:#ffffff,stroke:#fda4af,stroke-width:1.5px;
     classDef stepP fill:#ffffff,color:#312e81,stroke:#6366f1,stroke-width:1.5px;
     classDef stepT fill:#ffffff,color:#134e4a,stroke:#14b8a6,stroke-width:1.5px;
     classDef stepA fill:#ffffff,color:#143f30,stroke:#1f6b4f,stroke-width:1.5px;
     classDef stepH fill:#ffffff,color:#7c2d12,stroke:#ea580c,stroke-width:1.5px;
+    classDef stepG fill:#ffffff,color:#881337,stroke:#f43f5e,stroke-width:1.5px;
     classDef decP fill:#4338ca,color:#ffffff,stroke:#312e81,stroke-width:1.5px;
     classDef decT fill:#0f766e,color:#ffffff,stroke:#134e4a,stroke-width:1.5px;
     classDef decA fill:#15803d,color:#ffffff,stroke:#143f30,stroke-width:1.5px;
+    classDef decG fill:#be123c,color:#ffffff,stroke:#881337,stroke-width:1.5px;
     classDef porta fill:#ffffff,color:#0f172a,stroke:#94a3b8,stroke-width:1.5px;
     classDef start fill:#334155,color:#ffffff,stroke:#0f172a,stroke-width:1.5px;
     classDef hub fill:#475569,color:#ffffff,stroke:#0f172a,stroke-width:1.5px;
@@ -138,24 +165,28 @@ flowchart TD
     class TINTRO cabT;
     class AINTRO cabA;
     class HINTRO cabH;
+    class GINTRO cabG;
     %% passos (cartão branco, borda da cor da skill)
     class P0,P1,P1B,P2,P3,P4,P5,P6,P7,P8,CONTRATO stepP;
     class T1,T2,T3,T4,T5,T6 stepT;
     class NIVEL,AEXE,ACRIT stepA;
     class H0,H1,H2 stepH;
+    class G1,G2,G3,G4 stepG;
     %% decisões (losango forte na cor da skill)
     class PONTE decP;
     class TPONTE decT;
     class ARISK,ADEC,AMORE,BORDA decA;
+    class GDEC decG;
     %% estrutura compartilhada (cinza neutro)
     class START start;
     class PORTAS hub;
-    class E1,E2,E3,E4 porta;
-    class FIMP,FIMT,PARA,ENTREGA,NOVA,BLOQ fim;
+    class E1,E2,E3,E4,E5 porta;
+    class FIMP,FIMT,PARA,ENTREGA,NOVA,BLOQ,GFIM fim;
 
     %% molduras — cor bem fraquinha em volta de cada skill
     style PLANEJAR fill:#f1f1fc,stroke:#6366f1,stroke-width:2px;
     style AUTOTHINK fill:#eef7f5,stroke:#14b8a6,stroke-width:2px;
     style AUTO fill:#f0f8f1,stroke:#1f6b4f,stroke-width:2px;
     style HANDOFF fill:#fdf6ee,stroke:#ea580c,stroke-width:2px;
+    style GPTBLIND fill:#fff1f3,stroke:#f43f5e,stroke-width:2px;
 ```

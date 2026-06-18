@@ -18,7 +18,7 @@ Referencia de quais skills usar na Fase 6 (Auditoria) baseado na stack do projet
 | Acessibilidade | `design:accessibility-review` |
 | IA / LLM | `claude-api`, `gemini-api-dev`, `vercel:ai-sdk`, `vercel:ai-gateway` |
 | Testes / verificacao | `superpowers:test-driven-development`, `superpowers:verification-before-completion`, `verify` |
-| Plugin / skill Claude Code | `plugin-dev:skill-development`, `plugin-dev:plugin-structure` |
+| Plugin / skill Claude Code | `plugin-Titan:skill-development`, `plugin-Titan:plugin-structure` |
 | Caca-bug generica (qualquer repo) | skill de caca-bug generica instalada, se houver (ex.: `*:findbugs`) |
 
 ## Dominios transversais

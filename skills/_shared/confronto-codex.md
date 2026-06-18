@@ -57,7 +57,7 @@ perl -e 'alarm 900; exec @ARGV' codex exec --model gpt-5.5 \
   `auto-think`: máximo de raciocínio na via rápida do gpt-5.5). O `fast` precisa ser explícito
   porque `--ignore-user-config` ignora o tier do config global. Uma skill que queira esforço
   menor numa checagem leve (ex: `planejar` na 1ª chamada) troca `xhigh` por `high` no comando dela.
-- **Atalho:** a skill irmã `/dev:gpt-blindagem` (no mesmo plugin) traz os scripts
+- **Atalho:** a skill irmã `/Titan:gpt-blindagem` (no mesmo plugin) traz os scripts
   (`run-gpt.sh`, `verify-selo.sh`) — dá pra reusar em vez de montar a chamada na unha.
 
 ## 4. Regra de ouro — o Claude filtra antes, COM PROVA

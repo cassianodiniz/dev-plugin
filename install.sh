@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ════════════════════════════════════════════════════════════════════════
-# install.sh — instalador guiado das dependências do plugin `dev`.
+# install.sh — instalador guiado das dependências do plugin `Titan`.
 #
 # Roda sozinho tudo que dá pra automatizar (skills via npx + MCP do Stitch)
 # e, no fim, lista o pouco que SÓ VOCÊ pode fazer (colar os /plugin e dar as
@@ -19,7 +19,7 @@ say()  { printf '%s\n' "$*"; }
 ok()   { printf '  ✅ %s\n' "$*"; }
 warn() { printf '  ⚠️  %s\n' "$*"; }
 
-say "=== Instalador do plugin dev — dependências externas ==="
+say "=== Instalador do plugin Titan — dependências externas ==="
 say ""
 
 # ── Pré-requisitos ──────────────────────────────────────────────────────

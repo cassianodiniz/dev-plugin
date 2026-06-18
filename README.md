@@ -42,8 +42,8 @@ PowerShell/cmd nativo.
 ## Instalar
 
 Pelo `/plugin`: adicione o marketplace onde o plugin está publicado e instale **dev**.
-Roda uma vez por máquina. Depois as skills ficam disponíveis como `dev:planejar`,
-`dev:auto-prompt`, `dev:handoff`.
+Roda uma vez por máquina. Depois as skills ficam disponíveis como `Titan:planejar`,
+`Titan:auto-prompt`, `Titan:handoff`.
 
 Pra instalar o plugin **e todas as ferramentas que ele usa por fora** (pra você ou pra outra
 pessoa), siga o **[INSTALL.md](INSTALL.md)** — tem os comandos exatos de cada dependência.

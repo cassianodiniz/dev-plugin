@@ -245,7 +245,7 @@ radical) pra garantir que não é falta de imaginação, e não convergência re
 
 ### 3. Confrontar os achados (Codex tenta derrubar) — 1ª rodada
 Cada achado e cada candidata passa pelo Codex como **advogado do diabo** — o mesmo mecanismo do
-`/dev:gpt-blindagem`. O Codex tenta REFUTAR: isto resolve mesmo o problema ou só um sintoma? A premissa é fato
+`/Titan:gpt-blindagem`. O Codex tenta REFUTAR: isto resolve mesmo o problema ou só um sintoma? A premissa é fato
 ou foi vendida como fato? Tem caminho mais simples? A fonte sustenta a afirmação? O que
 sobrevive fica; o que é refutado cai (com o motivo registrado pra a entrega).
 

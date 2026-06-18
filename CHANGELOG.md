@@ -1,13 +1,18 @@
-# Changelog — dev
+# Changelog — Titan
+
+## 1.4.0 — 2026-06-18
+
+### Mudado
+- **Plugin renomeado de `dev` para `Titan`.** Acionamento agora é `Titan:planejar`, `Titan:auto-prompt`, `Titan:auto-think`, `Titan:handoff`, `Titan:gpt-blindagem`. Caminho do `$GPT` no `gpt-blindagem` passou a resolver pela própria pasta da skill (não mais cravado em `dev/`), pra funcionar em qualquer instalação.
 
 ## 1.3.0 — 2026-06-16
 
 ### Adicionado
-- **5ª skill: `gpt-blindagem`** — o revisor adversarial via Codex GPT-5.5, que era skill standalone na raiz (`~/.claude/skills/gpt-blindagem`), passou a viver **dentro do plugin** (`dev/skills/gpt-blindagem`). Acionamento por barra agora é `/dev:gpt-blindagem`; os gatilhos falados ("blinda isso", "chama o gpt", "advogado do diabo") seguem iguais. Manifesto: descrição atualizada (quatro → cinco skills).
+- **5ª skill: `gpt-blindagem`** — o revisor adversarial via Codex GPT-5.5, que era skill standalone na raiz (`~/.claude/skills/gpt-blindagem`), passou a viver **dentro do plugin** (`Titan/skills/gpt-blindagem`). Acionamento por barra agora é `/Titan:gpt-blindagem`; os gatilhos falados ("blinda isso", "chama o gpt", "advogado do diabo") seguem iguais. Manifesto: descrição atualizada (quatro → cinco skills).
 
 ### Mudado
-- **Reapontado o `$GPT`** no `gpt-blindagem/SKILL.md` pro novo caminho (`~/.claude/skills/dev/skills/gpt-blindagem` no Mac, `D:/skills/dev/skills/gpt-blindagem` no Windows) — senão a skill não acha os próprios `run-gpt.sh`/`verify-selo.sh`.
-- **Ponteiros pro nome novo:** `auto-think/SKILL.md` ("mesmo mecanismo do `/dev:gpt-blindagem`") e `_shared/confronto-codex.md` (atalho de reusar os scripts da skill irmã) passaram a citar `/dev:gpt-blindagem`.
+- **Reapontado o `$GPT`** no `gpt-blindagem/SKILL.md` pro novo caminho (`~/.claude/skills/Titan/skills/gpt-blindagem` no Mac, `D:/skills/Titan/skills/gpt-blindagem` no Windows) — senão a skill não acha os próprios `run-gpt.sh`/`verify-selo.sh`.
+- **Ponteiros pro nome novo:** `auto-think/SKILL.md` ("mesmo mecanismo do `/Titan:gpt-blindagem`") e `_shared/confronto-codex.md` (atalho de reusar os scripts da skill irmã) passaram a citar `/Titan:gpt-blindagem`.
 
 ## 1.2.4 — 2026-06-16
 
@@ -51,14 +56,14 @@
 ## 1.0.3 — 2026-06-14
 
 ### Mudado
-- **dev:** plugin **neutralizado (white-label)** — qualquer pessoa instala e adota como próprio. Removidas as menções ao Praxios e ao claudex (manifesto, README, `auto-prompt`, referências da `planejar`); o nome do marketplace `cassiano-local` virou instrução genérica no README e no `INSTALL.md`; referência a `smart-claudex:findbugs` virou exemplo genérico. **Autoria preservada:** Cassiano Diniz (autor) + Thales Laray (co-autor, novo campo `contributors` no manifesto e crédito no README). Nenhum caminho de máquina, credencial ou dado pessoal embutido — confirmado por varredura.
+- **Titan:** plugin **neutralizado (white-label)** — qualquer pessoa instala e adota como próprio. Removidas as menções ao Praxios e ao claudex (manifesto, README, `auto-prompt`, referências da `planejar`); o nome do marketplace `cassiano-local` virou instrução genérica no README e no `INSTALL.md`; referência a `smart-claudex:findbugs` virou exemplo genérico. **Autoria preservada:** Cassiano Diniz (autor) + Thales Laray (co-autor, novo campo `contributors` no manifesto e crédito no README). Nenhum caminho de máquina, credencial ou dado pessoal embutido — confirmado por varredura.
 
 ## 1.0.2 — 2026-06-14
 
 ### Adicionado
 - **planejar:** nova etapa na Fase 1 — **"Como já resolveram isso" (prior art)**. Antes de desenhar, usa a skill `/pesquisa` pra descobrir como o problema já foi resolvido lá fora e trazer ângulos que o usuário não estava vendo. Recomendada, mas pulável. Método em `references/descoberta-prior-art.md`, com 3 travas contra "visão diferente porém pior": o jeito simples sempre na mesa (baseline) · filtro da realidade do usuário (dá pra uma pessoa só, não-programador, construir e manter?) · confronto adversarial do Codex GPT. A pesquisa informa, o usuário decide. Salva a comparação em `docs/<nome>-prior-art.md`. Fecha o gap: a `/pesquisa` estava instalada mas não era usada por nenhuma skill.
-- **dev:** novo **`INSTALL.md`** — arquivo de auto-instalação que reúne todas as dependências externas do plugin (superpowers, taste-skill, find-skills, cloudflare, `/pesquisa`+Perplexity, gemini-api-dev, Stitch MCP, context7, firecrawl, Codex CLI) com os comandos exatos, agrupadas por crítica/com-fallback. Confirmado por investigação: tudo que o professor listou está instalado e em uso pela `planejar` — a `/pesquisa` era a única peça parada.
-- **dev:** novo **`install.sh`** — instalador guiado pra quem não curte terminal. Roda sozinho a parte automatizável (skills via `npx` + MCP do Stitch se a chave for passada) e, no fim, lista o pouco que só o usuário pode fazer (colar as linhas de `/plugin` e dar as chaves). O `INSTALL.md` ganhou uma seção "Jeito rápido" no topo separando "o script instala" × "só você faz".
+- **Titan:** novo **`INSTALL.md`** — arquivo de auto-instalação que reúne todas as dependências externas do plugin (superpowers, taste-skill, find-skills, cloudflare, `/pesquisa`+Perplexity, gemini-api-dev, Stitch MCP, context7, firecrawl, Codex CLI) com os comandos exatos, agrupadas por crítica/com-fallback. Confirmado por investigação: tudo que o professor listou está instalado e em uso pela `planejar` — a `/pesquisa` era a única peça parada.
+- **Titan:** novo **`install.sh`** — instalador guiado pra quem não curte terminal. Roda sozinho a parte automatizável (skills via `npx` + MCP do Stitch se a chave for passada) e, no fim, lista o pouco que só o usuário pode fazer (colar as linhas de `/plugin` e dar as chaves). O `INSTALL.md` ganhou uma seção "Jeito rápido" no topo separando "o script instala" × "só você faz".
 
 ## 1.0.1 — 2026-06-14
 

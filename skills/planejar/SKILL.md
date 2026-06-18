@@ -391,7 +391,7 @@ apontando para o plano.
 
 ## Ponte com a auto-prompt (executar o plano) — OPCIONAL, nunca automatico
 
-A `auto-prompt` e a skill irma deste plugin (`dev`): o modo "largar e esquecer" que executa
+A `auto-prompt` e a skill irma deste plugin (`Titan`): o modo "largar e esquecer" que executa
 sozinho, se confere e so chama o usuário nas decisoes reais. Quando o plano final estiver
 pronto e aprovado, OFERECA executar com ela — mas so OFERECA, nunca dispare sozinho:
 

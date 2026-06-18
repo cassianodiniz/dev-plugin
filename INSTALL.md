@@ -1,6 +1,6 @@
-# Instalar o plugin `dev` (e o que ele usa por fora)
+# Instalar o plugin `Titan` (e o que ele usa por fora)
 
-O plugin `dev` (skills `planejar`, `auto-prompt`, `handoff`) **orquestra** ferramentas externas —
+O plugin `Titan` (skills `planejar`, `auto-prompt`, `auto-think`, `handoff`, `gpt-blindagem`) **orquestra** ferramentas externas —
 ele não empacota elas. Este arquivo reúne tudo que precisa instalar pra ele rodar completo.
 
 A boa notícia: nada disso trava o plugin. A `planejar` tem um **preflight (Fase 0)** que confere
@@ -12,7 +12,7 @@ O que tem fallback, degrada sozinho.
 ## 0. Jeito rápido (instalador guiado) — recomendado pra quem não curte terminal
 
 Tem um script que **instala sozinho** a parte que dá pra automatizar. Você roda (ou pede pro
-Claude: *"roda o install.sh do dev"*):
+Claude: *"roda o install.sh do Titan"*):
 
 ```bash
 bash install.sh                      # instala as skills automáticas
@@ -39,16 +39,16 @@ As tabelas abaixo são a referência completa, item por item, caso queira instal
 
 ---
 
-## 1. Instalar o próprio plugin `dev`
+## 1. Instalar o próprio plugin `Titan`
 
 Pelo `/plugin`, adicione o marketplace e instale:
 
 ```
 /plugin marketplace add cassianodiniz/cassiano.diniz
-/plugin install dev@cassiano.diniz
+/plugin install Titan@cassiano.diniz
 ```
 
-Depois as skills ficam disponíveis como `dev:planejar`, `dev:auto-prompt`, `dev:handoff`.
+Depois as skills ficam disponíveis como `Titan:planejar`, `Titan:auto-prompt`, `Titan:handoff`.
 
 ---
 

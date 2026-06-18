@@ -1,4 +1,4 @@
-# Fluxograma — plugin `dev`
+# Fluxograma — plugin `Titan`
 
 Plugin com **quatro skills**. Cada uma é uma **porta de entrada independente** — você pode começar
 por qualquer uma:

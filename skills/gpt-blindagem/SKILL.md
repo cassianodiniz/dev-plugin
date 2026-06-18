@@ -19,9 +19,11 @@ Rodada 1: você monta o alvo, o GPT tenta derrubar, você filtra com prova. Aí 
 
 ## Caminhos (resolve na sua máquina antes de rodar)
 
-Os comandos usam `$TMP` e `$GPT`. Exporta os dois conforme o SO (uma vez):
-- **Mac:** `export TMP=/tmp GPT=~/.claude/skills/dev/skills/gpt-blindagem`
-- **Windows:** `export TMP=C:/temp GPT=D:/skills/dev/skills/gpt-blindagem`
+Os comandos usam `$TMP` e `$GPT`. `$GPT` é **a pasta desta própria skill** (a pasta onde está este `SKILL.md`, que contém `scripts/run-gpt.sh`). Resolva o caminho absoluto dela na sua instalação e exporte os dois (uma vez):
+- **Mac/Linux:** `export TMP=/tmp GPT=<pasta-desta-skill>` — ex.: `~/.claude/skills/Titan/skills/gpt-blindagem`
+- **Windows:** `export TMP=C:/temp GPT=<pasta-desta-skill>` — ex.: `D:/skills/Titan/skills/gpt-blindagem`
+
+> Pré-requisito: esta skill chama o **Codex CLI** (GPT-5.5). Sem o `codex` instalado, ela não roda o confronto externo — o Claude assume o papel do revisor sozinho e avisa que rodou sem o GPT.
 
 ---
 

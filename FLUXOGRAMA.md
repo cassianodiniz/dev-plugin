@@ -132,12 +132,13 @@ flowchart TD
     AMORE -->|"não, plano completo → produto pronto"| BORDA{"Bateu numa borda dura?<br/>dinheiro · envio · deploy ·<br/>apagar dado real · credencial"}
     ADEC -->|"sobrou risco na última rodada<br/>ou revisão inválida (risco alto)"| BLOQ(["⛔ BLOQUEADO<br/>não fecha sozinho; chama você"])
     AMORE -->|"ficou longo → passa o bastão"| HINTRO
+    TPONTE ~~~ HINTRO
     BORDA -->|"sim"| PARA(["⛔ Para e te chama<br/>pra decidir"])
     BORDA -->|"não"| ENTREGA(["✅ Entrega traduzida:<br/>o que PROVEI vs o que ASSUMI"])
 
     %% ───────── HANDOFF ─────────
     subgraph HANDOFF[" "]
-        direction LR
+        direction TB
         HINTRO["<b>🪢 /handoff</b><br/>salva o ponto e passa o bastão"]
         H0["<b>Ancora no git</b><br/><i>branch, commit, o que mudou</i>"]
         H1["<b>Captura ESTADO + PONTEIROS</b><br/><i>fato vs suposição; não inventa regra</i>"]
